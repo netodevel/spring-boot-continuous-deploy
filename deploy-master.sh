@@ -13,7 +13,7 @@ else
 fi
 
 echo "update master branch"
-cd /home/{YOUR_USER}/deploy/{YOUR_PROJECT}
+cd /home/{YOUR_USER}/deploy/production
 git pull https://{YOUR_USER_GIT}:{YOUR_PASSWORD_GIT}@{URL_GIT}
 
 echo "build project"
@@ -25,12 +25,12 @@ else
 fi
 
 echo "moving file"
-mv -f  target/{my-project}.jar /home/{YOUR_USER}/deploy/production
+mv -f  target/{JAR_NAME}.jar /home/{YOUR_USER}/deploy/production
 
 echo "kill process"
-kill `ps -ef | grep "java -jar -Dspring.profiles.active=production /home/{YOUR_USER}/deploy/production/{YOUR_PROJECT}"| grep -v grep | awk '{ print $2 }'`
+kill `ps -ef | grep "java -jar -Dspring.profiles.active=production /home/{YOUR_USER}/deploy/production/{JAR_NAME}"| grep -v grep | awk '{ print $2 }'`
 
 echo "run application production"
-nohup java -jar -Dspring.profiles.active=production /home/{YOUR_USER}/deploy/production/{my-project}.jar >  /home/{YOUR_USER}/deploy/production/server-prod.log 2>&1 &
+nohup java -jar -Dspring.profiles.active=production /home/{YOUR_USER}/deploy/production/{JAR_NAME}.jar >  /home/{YOUR_USER}/deploy/production/server-prod.log 2>&1 &
 
 echo "deploy finish"
