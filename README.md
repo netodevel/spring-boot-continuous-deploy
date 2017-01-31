@@ -11,7 +11,7 @@ Continuous Deployment with Spring Boot and Jenkins
 #Structure
 
     __deploy
-       __dev
+       __develop
           __clone-project
           server-dev.log
           myproject.jar
@@ -73,8 +73,28 @@ Run Shell
 `./deploy-master` or `./deploy-develop`
 
 
+#Configuration Enviroment Spring Boot
 
+###Add in your application-production.properties
 
+    spring.profiles.active=production
+    logging.level.org.springframework.security: INFO
+    logging.level.org.springframework.web: INFO
+    server.port=8082
+    server.context-path=/
+    server.tomcat.remote-ip-header=x-forwarded-for
+    server.tomcat.protocol-header=x-forwarded-proto
+    server.tomcat.access-log-enabled=true
+    server.tomcat.basedir=target/tomcat
+    server.tomcat.uri-encoding=UTF-8
+    
+###Use application-properties for develop
+    
+    spring.profiles.active=develop
+    server.port=8083
+    logging.level.org.springframework.security: INFO
+    logging.level.org.springframework.web: INFO
+    
 #License
 
     The MIT License (MIT)
