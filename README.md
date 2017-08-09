@@ -1,14 +1,14 @@
 # spring-boot-continuous-deploy
 Continuous Deployment with Spring Boot and Jenkins
 
-#Requeriments
+# Requeriments
 
 * Maven
 * Java 
 * Jenkins
 * Git
 
-#Structure
+# Structure
 
     __deploy
        __develop
@@ -20,25 +20,25 @@ Continuous Deployment with Spring Boot and Jenkins
           server-prod.log
           myproject.jar
 
-#Shell script life cycle
+# Shell script life cycle
 
-###First step:
+### First step:
 The clone of the branch (master or develop)
 
-###Second step:
+### Second step:
 Performs the maven clean package to generate our application.jar
 
-###Third step:
+### Third step:
 Let's move our jar to directory (develop or production)
 
-###Fourth step:
+### Fourth step:
 Kill the process that is running the application
 
-###Fifth step:
+### Fifth step:
 restart our application.
 
 
-#Usage
+# Usage
 Replace the {} parameters in the shells files.
 
 
@@ -50,22 +50,22 @@ Replace the {} parameters in the shells files.
 | {URL_GIT}    | Git url of your project. | 
 | {JAR_NAME}  | JAR NAME OF YOUR PROJECT | 
 
-#Jenkins Integration
+# Jenkins Integration
 
-###First step:
+### First step:
 create job project maven.
 
-###Second Step:
+### Second Step:
 Source Code Management use GIT
 
 Select branch (master or develop)
 
-###Third step:
+### Third step:
 Check the SCM periodically
 
 add schedule `****`
 
-###Fourth step:
+### Fourth step:
 Add Post Steps if build succeeds
 
 Run Shell
@@ -73,9 +73,9 @@ Run Shell
 `./deploy-master` or `./deploy-develop`
 
 
-#Configuration Enviroment Spring Boot
+# Configuration Enviroment Spring Boot
 
-###Add in your application-production.properties
+### Add in your application-production.properties
 
     spring.profiles.active=production
     logging.level.org.springframework.security: INFO
@@ -88,14 +88,14 @@ Run Shell
     server.tomcat.basedir=target/tomcat
     server.tomcat.uri-encoding=UTF-8
     
-###Use application-properties for develop
+### Use application-properties for develop
     
     spring.profiles.active=develop
     server.port=8083
     logging.level.org.springframework.security: INFO
     logging.level.org.springframework.web: INFO
     
-#License
+# License
 
     The MIT License (MIT)
 
